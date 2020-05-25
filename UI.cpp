@@ -8,6 +8,7 @@
 using namespace std;
 void UI::read()
 {
+	/*
 	int n;
 	cin >> n;
 	vector<double> a;
@@ -18,12 +19,13 @@ void UI::read()
 	}
 	reverse(a.begin(), a.end());
 	p b(a, 0, "a");
-	a.pop_back();
-	p c(a, 0, "b");
+	calculate data;
 	cout << b << endl;
-	cout << c << endl;
-	cout << p(b + c, "c") << endl;
-//	p b(a, 0, "a");
-	//p c(a, 0, "b");
-
+	cout << data.addP(b) <<endl;
+	cout << data.findP("a") << endl;
+	cout << data.addP(b) << endl;
+	*/
+	calculate a;
+	cout << a.calc("1+2*3") <<  endl;
+	//a.calc("($[0,2.1](F*G))!");
 }

@@ -138,6 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="calculate.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="p.cpp" />
     <ClCompile Include="algori.cpp" />
@@ -145,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algori.h" />
+    <ClInclude Include="calculate.h" />
     <ClInclude Include="diag.h" />
     <ClInclude Include="p.h" />
     <ClInclude Include="UI.h" />
