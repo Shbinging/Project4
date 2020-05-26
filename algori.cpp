@@ -1,4 +1,4 @@
-#include"algori.h"
+﻿#include"algori.h"
 
 int tr[MAXN];
 double pi = 3.1415926575;

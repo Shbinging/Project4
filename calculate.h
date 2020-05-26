@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include"p.h"
 #include<stack>
 #include<map>
@@ -19,7 +19,7 @@ public:
 		p num;
 		nodeSz(int a, p b):index(a), num(b){}
 	};
-	int addP(p tmp);//0 ³É¹¦ 1 ÖØÃû
+	int addP(p tmp);//0 æˆåŠŸ 1 é‡å
 	p findP(string name);
 	p calc(string st);
 	bool isDoubleNum(string st);

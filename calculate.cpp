@@ -1,4 +1,4 @@
-#include "calculate.h"
+Ôªø#include "calculate.h"
 #define Down(i, r, l) for(int i = r; i >=l; i--)
 calculate::calculate()
 {
@@ -36,7 +36,7 @@ p calculate::findP(string name)
 	return p(0);
 }
 
-p calculate::calc(string st)//-1 Œﬁ¥À∂‡œÓ Ω
+p calculate::calc(string st)//-1 Êó†Ê≠§Â§öÈ°πÂºè
 {
 	st += "@";
 	vector<string> a = split(st);
@@ -172,7 +172,7 @@ int calculate::popUp(string curFh, int index)
 						if (fh.empty()) return -2;
 						if (fh.top().opt != "$") return -2;
 						fh.pop();
-						//≤ª—œ∏Òµƒ∆•≈‰ºÏ≤È
+						//‰∏ç‰∏•Ê†ºÁöÑÂåπÈÖçÊ£ÄÊü•
 						double l, r;
 						if (sz.empty()) return -2;
 						p a = sz.top().num;

@@ -1,17 +1,17 @@
-#include "p.h"
+ï»¿#include "p.h"
 #include<algorithm>
 p p::operator*(const p& tmp)
 {
-	int newN = 1;//À©Õ¹´ÎÊı
-	int highN = n + tmp.n - 2;//×î¸ß´Î
-	for (; newN < highN + 1; newN *= 2);//´ÎÊıÀ©Õ¹³É2µÄ±¶Êı,×î¸ß´ÎÎªn + tmp.n -2;
-	vector<cp> a = fft(f, 1, newN);//¼ÆËãfµÄµãÖµ±í´ïÊ½
-	vector<cp> b = fft(tmp.f, 1, newN);//¼ÆËãf1µÄµãÖµ±í´ïÊ½
+	int newN = 1;//æ‰©å±•æ¬¡æ•°
+	int highN = n + tmp.n - 2;//æœ€é«˜æ¬¡
+	for (; newN < highN + 1; newN *= 2);//æ¬¡æ•°æ‰©å±•æˆ2çš„å€æ•°,æœ€é«˜æ¬¡ä¸ºn + tmp.n -2;
+	vector<cp> a = fft(f, 1, newN);//è®¡ç®—fçš„ç‚¹å€¼è¡¨è¾¾å¼
+	vector<cp> b = fft(tmp.f, 1, newN);//è®¡ç®—f1çš„ç‚¹å€¼è¡¨è¾¾å¼
 	vector<cp> c;
 	For(i, 0, newN - 1){
 		c.push_back(a[i] * b[i]);
 	}
-	vector<cp> ans = fft(c, 0, newN);//½«³Ë»ı×ª»»ÎªÏµÊı±í´ïÊ½
+	vector<cp> ans = fft(c, 0, newN);//å°†ä¹˜ç§¯è½¬æ¢ä¸ºç³»æ•°è¡¨è¾¾å¼
 	vector<double> ans1;
 	For(i, 0, highN) ans1.push_back(ans[i].x/newN);
 	return p(ans1);

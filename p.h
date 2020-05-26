@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include<stdio.h>
 #include<iostream>
 #include<vector>
@@ -9,19 +9,19 @@ using namespace std;
 class p
 {
 public:
-	p(vector<double> a, int id1, string name1) :n(a.size()), f(a), id (id1), name(name1){}//Ä¬ÈÏ¹¹Ôì
+	p(vector<double> a, int id1, string name1) :n(a.size()), f(a), id (id1), name(name1){}//é»˜è®¤æ„é€ 
 	p(vector<double> a):n(a.size()), f(a){}
 	p(int N):n(N){}
 	p(const double a){
 		n = 1;
 		f.push_back(a);
-	}//double×ª»»¹¹Ôì
+	}//doubleè½¬æ¢æ„é€ 
 	p(const p& tmp){
 		n = tmp.n;
 		f.assign(tmp.f.begin(), tmp.f.end());
 		name = tmp.name;
 		id = tmp.id;
-	}//¿½±´¹¹Ôì
+	}//æ‹·è´æ„é€ 
 
 	
 	p(const p& tmp, string name1){
@@ -32,7 +32,7 @@ public:
 
 	~p(){
 		f.clear();
-	}//Îö¹¹
+	}//ææ„
 	p operator * (const p& tmp);
 
 	p operator + (const p& tmp);
@@ -41,19 +41,19 @@ public:
 	double jiFen(const p&tmp, double l, double r);
 	p qiuDao(const p& tmp);
 
-	double xSquare(double a, int n, double x);//ÏµÊı ´ÎÊı È¡Öµ
+	double xSquare(double a, int n, double x);//ç³»æ•° æ¬¡æ•° å–å€¼
 	//p operator - (const p& tmp);
 	p& operator = (const p& tmp);
-	//vector& getf();//»ñÈ¡ÏµÊıĞòÁĞ
-	//int getsum();//»ñÈ¡´®*/
-	friend vector<cp> fft(vector<double>& f, bool flag, int n);//fftËã·¨
+	//vector& getf();//è·å–ç³»æ•°åºåˆ—
+	//int getsum();//è·å–ä¸²*/
+	friend vector<cp> fft(vector<double>& f, bool flag, int n);//fftç®—æ³•
 	friend vector<cp> fft(const vector<double>& g, bool flag, int n);
 	friend ostream& operator << (ostream& os, const p& tmp);
 
-	string name;//¶àÏîÊ½Ãû³Æ
-	int id;//¶àÏîÊ½±àºÅ
+	string name;//å¤šé¡¹å¼åç§°
+	int id;//å¤šé¡¹å¼ç¼–å·
 	int n;
-	vector<double> f;//ÏµÊı±íÊ¾
+	vector<double> f;//ç³»æ•°è¡¨ç¤º
 };
 
 

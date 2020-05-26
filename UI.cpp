@@ -1,4 +1,4 @@
-#include "UI.h"
+ï»¿#include "UI.h"
 #include<iostream>
 #include<vector>
 #include<string>
@@ -9,14 +9,14 @@ using namespace std;
 
 UI::UI()
 {
-	wrongList[0] = "²Ù×÷³É¹¦";
-	wrongList[1] = "·ÇÓĞĞ§³¤¶È";
-	wrongList[2] = "·ÇÓĞĞ§Êı×Ö";
-	wrongList[3] = "·ÇÓĞĞ§ÃüÃû";
-	wrongList[4] = "ÃüÃûÖØ¸´";
-	wrongList[5] = "±í´ïÊ½·Ç·¨";
-	wrongList[6] = "ÎŞ´Ë±í´ïÊ½";
-	wrongList[7] = "·ÇÓĞĞ§Ñ¡Ôñ";
+	wrongList[0] = "æ“ä½œæˆåŠŸ";
+	wrongList[1] = "éæœ‰æ•ˆé•¿åº¦";
+	wrongList[2] = "éæœ‰æ•ˆæ•°å­—";
+	wrongList[3] = "éæœ‰æ•ˆå‘½å";
+	wrongList[4] = "å‘½åé‡å¤";
+	wrongList[5] = "è¡¨è¾¾å¼éæ³•";
+	wrongList[6] = "æ— æ­¤è¡¨è¾¾å¼";
+	wrongList[7] = "éæœ‰æ•ˆé€‰æ‹©";
 
 }
 
@@ -24,7 +24,7 @@ int UI::read()
 {
 	int n;
 	while (1){
-		n = queBoxInt("ÄúÒªÌí¼ÓµÄ¶àÏîÊ½³¤¶ÈÎª:");
+		n = queBoxInt("æ‚¨è¦æ·»åŠ çš„å¤šé¡¹å¼é•¿åº¦ä¸º:");
 		if (n < 0){
 			wrongBox(1);
 		}
@@ -33,9 +33,9 @@ int UI::read()
 		}
 		else break;
 	}
-	cout << "Çë°´¶àÏîÊ½ÏµÊı´Ó¸ßµ½µÍÊäÈëÃ¿Ò»Ïî,¿Õ¸ñ¸ô¿ª:";
+	cout << "è¯·æŒ‰å¤šé¡¹å¼ç³»æ•°ä»é«˜åˆ°ä½è¾“å…¥æ¯ä¸€é¡¹,ç©ºæ ¼éš”å¼€:";
 	vector<double> a;
-	//ÎŞĞ§Êı×ÖÎªÅĞ¶Ï
+	//æ— æ•ˆæ•°å­—ä¸ºåˆ¤æ–­
 	For(i, 1, n){
 		double tmp;
 		cin >> tmp;
@@ -44,7 +44,7 @@ int UI::read()
 	reverse(a.begin(), a.end());
 	string name;
 	while (1){
-		name = queBoxStr("Çë¸øËüÃüÃû:");
+		name = queBoxStr("è¯·ç»™å®ƒå‘½å:");
 		if (name == ""){
 			wrongBox(3);
 		}
@@ -66,7 +66,7 @@ int UI::calc()
 {
 	string st;
 	while (1){
-		st = queBoxStr("ÇëÊäÈë±í´ïÊ½:");
+		st = queBoxStr("è¯·è¾“å…¥è¡¨è¾¾å¼:");
 		if (data.calc(st).n <= 0){
 			wrongBox(5);
 		}
@@ -82,7 +82,7 @@ int UI::print()
 {
 	string st;
 	while (1){
-		st = queBoxStr("ÇëÊäÈë¶àÏîÊ½Ãû×Ö:");
+		st = queBoxStr("è¯·è¾“å…¥å¤šé¡¹å¼åå­—:");
 		if (!data.findP(st).n){
 			wrongBox(6);
 		}
@@ -97,8 +97,8 @@ int UI::print()
 int UI::mainUi()
 {
 	while (1){
-		printf("==============¶àÏîÊ½¼ÆËãÆ÷V1.0²»ÍêÈ«°æ==============\n1.ÊäÈë  2.»ìºÏÔËËã 6.²é¿´\n====================================================\n");
-		int opt = queBoxInt("ÇëÊäÈë²Ù×÷:");
+		printf("==============å¤šé¡¹å¼è®¡ç®—å™¨V1.0ä¸å®Œå…¨ç‰ˆ==============\n1.è¾“å…¥  2.æ··åˆè¿ç®— 6.æŸ¥çœ‹\n====================================================\n");
+		int opt = queBoxInt("è¯·è¾“å…¥æ“ä½œ:");
 		if (opt <= 0){
 			wrongBox(7);
 		}

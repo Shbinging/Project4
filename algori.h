@@ -1,11 +1,11 @@
-#pragma once
+﻿#pragma once
 #ifndef algori
 #define algori
 #include<vector>
 #include <algorithm>
 #include<math.h>
 #include"diag.h"
-
+#include<string.h>
 using namespace std;
 struct cp{
 	double x, y;
