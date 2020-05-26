@@ -4,9 +4,10 @@ calculate::calculate()
 {
 	fhClass["+"] = 1;
 	fhClass["*"] = 2;
-	fhClass["("] = -3;
+	//fhClass["("] = 9;
 	fhClass[")"] = -2;
-	fhClass["@"] = -4;
+	fhClass["("] = -3;
+	fhClass["@"] = -1;
 	fhClass["$"] = 4;
 	fhClass["["] = 5;
 	fhClass[","] = 6;
@@ -48,9 +49,21 @@ p calculate::calc(string st)//-1 无此多项式
 			}
 		}
 		else{
+			if (a[i] == "("){
+				fh.push(nodeFh(i, a[i]));
+				continue;
+			}
 			int opt = popUp(a[i], i);
 			if (opt == -2) return p(-2);
-			if (a[i] != "@") fh.push(nodeFh(i, a[i]));
+			//
+			if (a[i] == ")"){
+				if (fh.empty() || fh.top().opt != "("){
+					return p(-2);
+				}
+				else fh.pop();
+			}
+			//
+			if (a[i] != "@" && a[i] != ")") fh.push(nodeFh(i, a[i]));
 		}
 	}
 	if (sz.empty() || !fh.empty()) return p(-2);
@@ -109,54 +122,66 @@ int calculate::popUp(string curFh, int index)
 			fh.pop();
 			sz.push(nodeSz(bIndex, a + b));
 		}
-		if (oldFh == "*"){
-			if (sz.empty()) return -2;
-			p b = sz.top().num;
-			int bIndex = sz.top().index;
-			sz.pop();
-			if (sz.empty()) return -2;
-			p a = sz.top().num;
-			int aIndex = sz.top().index;
-			sz.pop();
-			if (!(aIndex < oldFhIndex && oldFhIndex < bIndex)) return -2;
-			fh.pop();
-			sz.push(nodeSz(bIndex, a * b));
-		}
-		if (oldFh == "!"){
-			if (sz.empty()) return -2;
-			p a = sz.top().num;
-			int aIndex = sz.top().index;
-			if (!(aIndex < oldFhIndex)) return -2;
-			fh.pop();
-			sz.pop();
-			sz.push(nodeSz(oldFhIndex, a.qiuDao(a)));
-		}
-		if (oldFh == "]"){
-			fh.pop();
-			if (fh.empty()) return -2;
-			if (fh.top().opt != ",") return -2;
-			fh.pop();
-			if (fh.empty()) return -2;
-			if (fh.top().opt != "[") return -2;
-			fh.pop();
-			if (fh.empty()) return -2;
-			if (fh.top().opt != "$") return -2;
-			fh.pop();
-			//不严格的匹配检查
-			double l, r;
-			if (sz.empty()) return -2;
-			p a = sz.top().num;
-			int aIndex = sz.top().index;
-			sz.pop();
-			if (sz.empty()) return -2;
-			l = sz.top().num.f[0];
-			sz.pop();
-			if (sz.empty()) return -2;
-			r = sz.top().num.f[0];
-			sz.pop();
-			if (!(oldFhIndex < aIndex)) return -2;
-			sz.push(nodeSz(aIndex, p(a.jiFen(a, l, r))));
-		}
+		else
+			if (oldFh == "*"){
+				if (sz.empty()) return -2;
+				p b = sz.top().num;
+				int bIndex = sz.top().index;
+				sz.pop();
+				if (sz.empty()) return -2;
+				p a = sz.top().num;
+				int aIndex = sz.top().index;
+				sz.pop();
+				if (!(aIndex < oldFhIndex && oldFhIndex < bIndex)) return -2;
+				fh.pop();
+				sz.push(nodeSz(bIndex, a * b));
+			}
+			else
+				if (oldFh == "!"){
+					if (sz.empty()) return -2;
+					p a = sz.top().num;
+					int aIndex = sz.top().index;
+					if (!(aIndex < oldFhIndex)) return -2;
+					fh.pop();
+					sz.pop();
+					sz.push(nodeSz(oldFhIndex, a.qiuDao(a)));
+				}
+				else
+					if (oldFh == "]"){
+						fh.pop();
+						if (fh.empty()) return -2;
+						if (fh.top().opt != ",") return -2;
+						fh.pop();
+						if (fh.empty()) return -2;
+						if (fh.top().opt != "[") return -2;
+						fh.pop();
+						if (fh.empty()) return -2;
+						if (fh.top().opt != "$") return -2;
+						fh.pop();
+						//不严格的匹配检查
+						double l, r;
+						if (sz.empty()) return -2;
+						p a = sz.top().num;
+						int aIndex = sz.top().index;
+						sz.pop();
+						if (sz.empty()) return -2;
+						r = sz.top().num.f[0];
+						sz.pop();
+						if (sz.empty()) return -2;
+						l = sz.top().num.f[0];
+						sz.pop();
+						if (!(oldFhIndex < aIndex)) return -2;
+						sz.push(nodeSz(aIndex, p(a.jiFen(a, l, r))));
+					}
+					else
+						if (oldFh != "(") return -2;
+						/*
+						if (oldFh == "("){
+							if (curFh == ")") fh.pop();
+							else return 0;
+						}
+						else return -2;
+						*/
 	}
 	return 0;
 }

@@ -25,7 +25,24 @@ void UI::read()
 	cout << data.findP("a") << endl;
 	cout << data.addP(b) << endl;
 	*/
-	calculate a;
-	cout << a.calc("1+2*3") <<  endl;
+	vector<double> b;
+	b.push_back(3);
+	b.push_back(2);
+	b.push_back(1);
+	p a(b, 0, "F");
+	cout << a << endl;
+	b.clear();
+	b.push_back(4);
+	b.push_back(5);
+	b.push_back(6);
+	p c(b, 0, "G");
+	cout << c << endl;
+	calculate d;
+	d.addP(a);
+	d.addP(c);
+	//cout << d.calc("f+g!") <<  endl;
+	string st;
+	cin >> st;
+	cout << d.calc(st) << endl;
 	//a.calc("($[0,2.1](F*G))!");
 }
