@@ -6,6 +6,6 @@
 using namespace std;
 int main(){
 	UI a;
-	a.read();
+	a.mainUi();
 	return 0;
 }

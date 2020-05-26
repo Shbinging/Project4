@@ -77,7 +77,7 @@ p calculate::calc(string st)//-1 无此多项式
 bool calculate::isDoubleNum(string st)
 {
 	For(i, 0, int(st.size()) - 1){
-		if (!('0' <= st[i] && st[i] <= '9' || st[i] == '.')) return 0;
+		if (!('0' <= st[i] && st[i] <= '9' || st[i] == '.' || st[i] == '-')) return 0;
 	}
 	return 1;
 }
@@ -209,6 +209,11 @@ string calculate::toStr(char ch)
 
 double calculate::toDoulbe(string st)
 {
+	double fh = 1;
+	if (st[0] == '-'){
+		fh = -1;
+		st = st.substr(1);
+	}
 	int position = st.find(".");
 	string zSt, fSt;
 	if (position == -1){
@@ -227,5 +232,5 @@ double calculate::toDoulbe(string st)
 		sumf = sumf * 1.0 / 10.0 + fSt[i] - '0';
 	}
 	sumf /= 10.0;
-	return sumz + sumf;
+	return fh*(sumz + sumf);
 }

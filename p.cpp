@@ -92,6 +92,9 @@ ostream& operator << (ostream& os, const p& tmp){
 			if (tmp.f[i] >= 0) os << " + ";
 			else os << " - ";
 		}
+		else{
+			if (tmp.f[i] < 0) os << "-";
+		}
 		if (!equal(tmp.f[i], 1) || i == 0) cout << fabs(tmp.f[i]);
 		if (i != 0){ 
 			if (i == 1) os << "x";
