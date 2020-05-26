@@ -89,7 +89,21 @@ vector<string> calculate::split(string st)
 	For(i, 0, int(st.size()) - 1){
 		if (isFh(toStr(st[i]))){
 			if (subSt != "") optList.push_back(subSt);
-			optList.push_back(toStr(st[i]));
+			if (st[i] == '['){
+				optList.push_back(toStr(st[i]));
+				optList.push_back("(");
+			}
+			else if (st[i] == ','){
+				optList.push_back(")");
+				optList.push_back(toStr(st[i]));
+				optList.push_back("(");
+			}
+			else if (st[i] == ']'){
+				optList.push_back(")");
+				optList.push_back(toStr(st[i]));
+			}
+			else
+				optList.push_back(toStr(st[i]));
 			subSt = "";
 		}
 		else{

@@ -43,6 +43,11 @@ void UI::read()
 	//cout << d.calc("f+g!") <<  endl;
 	string st;
 	cin >> st;
+	vector<string> e = d.split(st + "@");
+	For(i, 0, e.size() - 1){
+		cout << e[i] << " ";
+	}
+	cout << endl;
 	cout << d.calc(st) << endl;
 	//a.calc("($[0,2.1](F*G))!");
 }
