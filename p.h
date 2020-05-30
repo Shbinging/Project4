@@ -37,18 +37,30 @@ public:
 
 	p operator + (const p& tmp);
 
+	p operator - (const p& tmp);
 
+	p operator / (const p& b);
+
+	p operator % (const p& b);
+
+	p format(const p& b);//去除高阶多余的0
+
+	p& operator = (const p& tmp);
+
+	
 	double jiFen(const p&tmp, double l, double r);
 	p qiuDao(const p& tmp);
 
 	double xSquare(double a, int n, double x);//系数 次数 取值
-	//p operator - (const p& tmp);
-	p& operator = (const p& tmp);
+	
 	//vector& getf();//获取系数序列
 	//int getsum();//获取串*/
 	friend vector<cp> fft(vector<double>& f, bool flag, int n);//fft算法
 	friend vector<cp> fft(const vector<double>& g, bool flag, int n);
 	friend ostream& operator << (ostream& os, const p& tmp);
+	friend p mod(p tmp, int n);
+	friend p niYuan(p f, int n);
+	friend p reverse(p tmp);
 
 	string name;//多项式名称
 	int id;//多项式编号
@@ -58,3 +70,5 @@ public:
 
 
 ostream& operator << (ostream& os, const p& tmp);
+p mod(p tmp, int n);
+p niYuan(p tmp, int n);

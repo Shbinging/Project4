@@ -2,7 +2,8 @@
 #define Down(i, r, l) for(int i = r; i >=l; i--)
 calculate::calculate()
 {
-	fhClass["+"] = 1;
+	fhClass["+"] = 0;
+	fhClass["-"] = 0;
 	fhClass["*"] = 2;
 	//fhClass["("] = 9;
 	fhClass[")"] = -2;
@@ -13,6 +14,9 @@ calculate::calculate()
 	fhClass[","] = 6;
 	fhClass["]"] = 7;
 	fhClass["!"] = 8;
+	fhClass["/"] = 2;
+	fhClass["~"] = 9;
+	fhClass["%"] = 1;
 }
 int calculate::addP(p tmp)
 {
@@ -40,6 +44,8 @@ p calculate::calc(string st)//-1 无此多项式
 {
 	st += "@";
 	vector<string> a = split(st);
+	while (!sz.empty()) sz.pop();
+	while (!fh.empty()) fh.pop();
 	For(i, 0, int(a.size()) - 1){
 		if (!isFh(a[i])){
 			if (isDoubleNum(a[i])) sz.push(nodeSz(i, p(toDoulbe(a[i]))));
@@ -123,7 +129,7 @@ int calculate::popUp(string curFh, int index)
 	while (!fh.empty() && fhClass[curFh] <= fhClass[fh.top().opt]){
 		string oldFh = fh.top().opt;
 		int oldFhIndex = fh.top().index;
-		if (oldFh == "+"){
+		if (oldFh == "+" || oldFh == "-" || oldFh == "*" || oldFh == "/" || oldFh == "%"){
 			if (sz.empty()) return -2;
 			p b = sz.top().num;
 			int bIndex = sz.top().index;
@@ -134,31 +140,42 @@ int calculate::popUp(string curFh, int index)
 			sz.pop();
 			if (!(aIndex < oldFhIndex && oldFhIndex < bIndex)) return -2;
 			fh.pop();
-			sz.push(nodeSz(bIndex, a + b));
+			char oldFh1 = oldFh[0];
+			switch (oldFh1)
+			{
+			case '+':
+				sz.push(nodeSz(bIndex, a + b));
+				break;
+			case '-':
+				sz.push(nodeSz(bIndex, a - b));
+				break;
+			case '*':
+				sz.push(nodeSz(bIndex, a * b));
+				break;
+			case '/':
+				sz.push(nodeSz(bIndex, a / b));
+				break;
+			case '%':
+				sz.push(nodeSz(bIndex, a % b));
+				break;
+			}
 		}
 		else
-			if (oldFh == "*"){
-				if (sz.empty()) return -2;
-				p b = sz.top().num;
-				int bIndex = sz.top().index;
-				sz.pop();
-				if (sz.empty()) return -2;
-				p a = sz.top().num;
-				int aIndex = sz.top().index;
-				sz.pop();
-				if (!(aIndex < oldFhIndex && oldFhIndex < bIndex)) return -2;
-				fh.pop();
-				sz.push(nodeSz(bIndex, a * b));
-			}
-			else
-				if (oldFh == "!"){
+				if (oldFh == "!" || oldFh == "~"){
 					if (sz.empty()) return -2;
 					p a = sz.top().num;
 					int aIndex = sz.top().index;
 					if (!(aIndex < oldFhIndex)) return -2;
 					fh.pop();
 					sz.pop();
-					sz.push(nodeSz(oldFhIndex, a.qiuDao(a)));
+					char oldFh1 = oldFh[0];
+					switch (oldFh1){
+					case '!':
+						sz.push(nodeSz(oldFhIndex, a.qiuDao(a)));
+					case '~':
+						sz.push(nodeSz(oldFhIndex, niYuan(a, a.n)));
+					}
+
 				}
 				else
 					if (oldFh == "]"){
