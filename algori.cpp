@@ -2,7 +2,7 @@
 
 int tr[MAXN];
 double pi = 3.1415926575;
-
+   
 vector<cp> fft(vector<cp>& f, bool flag, int n){//0 fft 1 ifft
 	memset(tr, 0, sizeof(tr));
 
